@@ -216,7 +216,44 @@
 		 V
 	    Dead
 	
+-4.7. Coroutines create local variables, so when checking variables
+	from inside of coroutines, do it like this:
 	
+	..some corot
+	{
+		yield return new WaitForSeconds(time);
+		
+		if (healthSys.GetHealth() > 0 ) {
+			//do something
+		}
+	}
+	
+	instand of this:
+	
+	health = healthSys.GetHealth();
+	..some corot
+	{
+		yield return new WaitForSeconds(time);
+		
+		if (health > 0 ) {
+			//do something
+		}
+	}
+	
+	The reason is 
+		a) in the second case, its obvious that we copy only the 
+			healthSys' value in that given moment into "health".
+		
+		b) even if the value "health" changes during the corot's
+			waiting period (WaitForSeconds(time)), this change 
+			will not be reflected in the coroutines own "health"
+			value. This is because the coroutine creates copies of 
+			values passed into it.
+			
+	//TODO: Double-check this: Is this the case with coroutines, or 
+		with coroutines that invoke delegates in 'em? (as is the
+		case with Coroutines.WaitThenExecute(float, voidDlg) in
+		metroidvana)
 	
 
 

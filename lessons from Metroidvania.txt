@@ -253,7 +253,7 @@
 	//TODO: Double-check this: Is this the case with coroutines, or 
 		with coroutines that invoke delegates in 'em? (as is the
 		case with Coroutines.WaitThenExecute(float, voidDlg) in
-		metroidvana)
+		metroidvania)
 	
 
 

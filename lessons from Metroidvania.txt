@@ -1,0 +1,225 @@
+-the big "player xVelocity = horizontalAxis * speed" debacle:
+	This technique is bad, because let's say you get launched
+	by a catapult sideways. You'd instantly freeze your x-vel,
+	thanks to horizontalAxis=0 (when being launched, you're
+	not holding anything, let's assume).
+	
+-wall clinging & running:
+	possible thanks to player-friction = 1 and m_isOnGround
+	somehow, idk how, not that important.
+	
+-the OnTriggerX false assumption
+	...there's a lot to write to this, but the jist of it is 
+	that only the "wires" of colliders really do collide, 
+	NOT the space inside of them, as may seem logical.
+	So I changed the physics shape of ladders so that the 
+	player collider is always sticking out at least a little
+	bit.
+	
+-the weird Vector2.Angle() function results:
+	TL;DR: I wrote my own function which works like so:
+	     
+            T - To Vector             | pi / 2
+           /|                         |
+          / |                 pi -----+----- 0
+         /a)| - angle                 |
+        F___| - From Vector           | 3pi / 2
+		
+	It's in a file called OwnUtility.cs, which you can just
+	pop into any project and boom, you can use it by writing
+	OwnUtility.Angle(from, to);
+	Btw, don't want to write down OwnUtility.X every single time?
+	Use an ALIAS! For ex, how2make OwnUtility into just Own:
+		using Own = OwnUtility;
+	
+-QUESTION: can you do myVector.Set(Vector2(xComp, yComp)); ???
+	because why would the unity people create the VectorX.Set()
+	method?
+
+-Animation transition from any state:
+	I have a "hurt" animation that I want to trigger whenever
+	the player touches an enemy, be it mid-air, while climbing
+	a ladder or doing any other animation.
+	
+	How 2 do this:
+	Make a transition from "Any State" to "Hurt". Set the
+	parameter to make this transition happen, of course.
+	BUT also make sure to UNcheck in the transition arrow 
+	the tickbox called "can transition to self". 
+	Also, you probably want to make a transition from "Hurt"
+	to some other animation, like "Idle", with no parameter
+	of course.
+
+-16.6. Think about dependencies. Does my movement class really
+	need to know about the health display class? No? But the 
+	health display class still needs to know something about the
+	movement class? Use delegates! Or UnityEvents or 
+	System.EventHandler
+	
+-17.6 How 2 ROTATE things easily
+	Say you wanna rotate something so that it faces the mouse?
+	You can do that by setting the object's transform.up to the
+	direction pointing from your object to the mouse.
+	
+	transform.up / transform.right ... represent each an axis
+	in 3D space. by setting it to a particular vector, you 
+	make that axis "point" in that vector's direction.
+	
+-18.6. Use Interfaces for cleaner code
+
+-18.6. Mathf.Atan2 returns the correct angle even in the place
+	where tangens is not defined (Mathf.Atan would return a 
+	division by zero error)
+	
+-20.6. Rigidbody Sleeping Mode:
+	When you make a rigidbody and leave it to collide with, say,
+	the ground, you'll notice that it won't register the ground's
+	collisions. That's because the sleeping mode is by default set
+	to Start-Awake. During this, whenever the gameobject and also
+	the gameobject it's colliding with are both without velocity,
+	they won't register each other. To solve this, set the 
+	sleeping mode o "Never Sleep" - according to Unity Docs, this
+	should be avoided wherever possible, since it can impact CPU
+	resources.
+	
+-20.6. COLLISION DETECTION w/out relying on OnCollisionX/OnTriggerX 
+
+	TL;DR: The Collider2D class has useful methods which you can use
+	to setup your own collision detection system, thus not having to
+	be reliant on the OnCollisionX/OnTriggerX methods.
+	
+	...
+	A Rigidbody takes into account all child colliders
+	of the parent gameObject. So if you want to correctly simulate
+	collisions with a snowman, this is the correct setup:
+	
+	Snowman (rigidbody, custom script)
+		|_ Head Ball (sphere collider)
+		|_ Middle Ball (sphere collider)
+		|_ Lowest Ball (sphere collider)
+		
+	Sometimes you may want to detect collisions using the OnTriggerX/
+	OnCollisionX functions, which are only called when a collision
+	happens and one of the two gameObject involved in the collision
+	also has a rigidBody script. 
+	Let's say that this snowman also has a single capsule collider 
+	used for detecting damage. Relying on the methods above may 
+	be an inappropriate way of detecting collisions in some specific
+	scenarios since they may also take into consideration the sphere
+	colliders. 
+	
+	In cases like these, you could use Collider2D.OverLapColliders
+	or other collision-related methods of the Collider2D class.
+	
+-22.6 int LayerMask.NameToLayer(str) doesn't return what you might
+	expect
+	"The problem lies with LayerMask.NameToLayer. It's a bit 
+	counter-intuitive, but: NameToLayer returns the index of the 
+	Layer with the given name. So you get 1, 2, 3, 4 and so on 
+	when you go through your layers' names. A LayerMask, however, 
+	is a single integer that represents a set of layers as a bitmask.
+	In binary, your returned layer index is "...001000" (binary for 8).
+	A LayerMask uses the binary number's bits as a collection booleans.
+	So if you had layers 1 and 3 in a mask, the LayerMask would look 
+	like this: "...00101", which, seen as a number rather than a 
+	bitmask, would be 5.
+	So what you would want to have is not "...001000" but the 8th bit 
+	from the left being 1, "...0010000000" which would be interpreted 
+	as 128.
+	Long story short: Carefully think through when to use NameToLayer.
+	For generating a LayerMask, use GetMask
+	source: 
+	https://answers.unity.com/questions/1430381/rigidbody2d-objectoverlapcollidercontactfilter2d-c.html
+	
+-22.6 ContactFilter2D Ain't working as expected. I just wanted to
+	use 
+	myCollider.overlapCollider(ContactFilter2D cf, Collider[] resultsArray) 
+	and it still returned every collider that overlaps myCollider.
+	It's as if instead of providing cf i provided cf.NoFilter().
+	
+	FYI: I set everything correctly: 
+	cf.SetLayerMask(LayerMask.GetMask("layer1","layer2"...)) &
+	even set cf.UseLayerMask to true. Nothing worked :(
+	
+-23.6 If you're having trouble with setting a UI Image's color,
+	use color.crossFadeAlhpa/Color
+	
+-25.6. someScript?.SomeMethod - that ?. is enormly useful.
+	if someScript is null, no exception will be raised.
+	You're using the ternary ?: operator here
+	
+-26.6 How to change spriteRenderer.color:
+	Turns out, it accepts colors in the 0-1 color format
+	a.k.a sp.color = new Color(0.5f, 1f, 0f);
+	
+-26.6 Itch.io build quick & dirty fix:
+	Make your canvas in world space and make it the same
+	size as the camera. Cause that's ez.
+	In Edit > Build Settings > Player Settings 
+	find Resolution & Presentation and set
+	default width & default height to your camera's 
+	width & hight, or in this scenario it can be 
+	camera width & height just as well.
+	
+	In itch.io, in Embed options, don't set the
+	embed size manually. I tried setting it to the
+	parameters mentioned above but there was a tiny bit 
+	of cutoff.
+	If you instead set the embed size to detect automatically,
+	It'll work.
+	
+-27.6 In a 2D game, audio not working:
+	If you can't head audiosources, or the volume faloff is 
+	weird, make sure that your audiolistener (most commonly on
+	your camera) has the Z position the same (or very close to)
+	as the audiosource. Most commonly, the audiolistener is on
+	the main camera. If it's being driven by cinemachine, you 
+	can't (or at least I haven't figured it out yet) change its
+	Z-position. 
+	Easy fix? Put the audiolistener on your player, for example.
+	Or make a gameobject, which follows the camera's XY pos, but 
+	has the correct Z pos & slap an audiolistener on this 
+	gameObject.
+	Make sure that volume or pitch aren't set to 0
+	
+-27.6 using delegates and lambda methods! 
+
+	public delegate void emptyDlg();
+    public event emptyDlg OnDamagedByLava;
+	OnDamagedByLava += (() => {sfx.TryPlayOnce("TouchLava");});
+	
+	...somewhere in code 
+	//if damaged by lava
+	OnDamagedByLava?.Invoke();
+	
+-4.7. ContactFilter2D not working? Do you have it serialized in 
+	the inspector? Then don't forget to check [Use Layer Mask]!
+	Also, keep in mind [Use Triggers]
+	
+-4.7. Flipping a gameobject's rotation, for example in a 2D-
+	environment? Think again. This'll give every child gameobject
+	a negative scale as well (though not visible in the inspector),
+	which can be negative in some cases - for example, colliders 
+	don't support negative scale and thus may cause you headaches.
+	
+-4.7. In the animator, when transitioning from Any State, make
+	sure that if you have for example 2 transitions going out
+	from Any State, they don't interfere with each other.
+	In the metroidvania project, the player's Any State looks like 
+	this:
+	
+				   __ transitions when isHurt and WHEN NOT isDead
+				  |
+	[Any State] ---> Hurt
+	     |
+		 | -- transitions when isDead
+		 V
+	    Dead
+	
+	
+	
+
+
+
+
+

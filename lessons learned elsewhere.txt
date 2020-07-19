@@ -81,3 +81,17 @@
 	meaning you couldn't make it use and elevator, if the elevator were 
 	a collider with a rigidbody and upwards velocity. Still very handy 
 	though!
+	
+19.7 Multiperson coding via Live Share!
+	Visual Studio & Visual Studio Code have this extension called
+	"Live Share". Simply install it and you'll have a button which 
+	will create a link to what you're currently working on. Anyone
+	with this link can join your code and make changes. You can see 
+	the other person - their cursor, what they highlighted and what 
+	they're typing right now.
+	Haven't played much with this feature but it's incredibly easy to 
+	jump into someone's coding session and do stuff.
+
+
+
+

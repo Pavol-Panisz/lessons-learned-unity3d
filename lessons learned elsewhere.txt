@@ -1,0 +1,83 @@
+
+19.7 Creating a 3D World 101: 
+	Terrains, Probuilder, Polybrush, Import from Minecraft, Character 
+	Controller
+	|
+	Terrain editor - You can easily get it and start creating terrains
+	by importing the Standard Assets package from the asset store. The 
+	workflow to expect is creating mountains, lakes, adding 
+	trees, grass and painting textures such as rock, path, dirt, etc..
+	This package contains the Terrain creation tools as well as sample
+	trees, textures, foliage, etc to get you started making a landscape
+	quickly. Check youtube for a quick primer on this topic.
+	Pros: Trees and foliage sway in the wind, have LOD (level of detail)
+		already set up on 'em. When raising / lowering land, trees and 
+		foliage get moved accordingly.
+	Cons: Textures painted don't have sharp edges. Creating caves, 
+		bridges, sudden cliffs or overhangs is clunky, requires Unity
+		2019.3+. According to a comment on this official Unity Blogpost
+		https://blogs.unity3d.com/2020/01/31/digging-into-terrain-paint-holes-in-unity-2019-3/
+		the workflow to create caves and such is annoying and texture 
+		seems are visible around the created holes.
+	|
+	Probuilder - A tool for rapid 3D model creation. Not as powerful as
+	legit 3D programs but still really good for prototyping, not too
+	complex. Create shapes, move vertices/edges/faces, extrude, bevel 
+	and so on. You can also assign materials and manipulate UVs, but 
+	you can't directly paint onto the shapes like you could in, say, 
+	3D Paint. Oh yeah, it has a grid system, so you can align everything
+	neatly if you wish
+	|
+	Polybrush - Exactly what the name suggests. You can create meshes 
+	and manipulate their vertices using brushes. Suitable for terrain 
+	creation, since you can also create overhangs and so forth. There's
+	the option of painting individual colors with a brush onto the mesh,
+	though the strokes can still be a bit blurred on the edges (I think).
+	To alleviate this issue, you can also paint textures of course.
+	You may be asking, what's the difference between Probuilder and 
+	Polybrush, since in Probuilder, you can also manipulate vertices n 
+	such:
+		Probuilder is more suitable for creating props such as 
+		weapons, items or buildings.
+		Polybrush is intended for raw mesh manipulation, so for stuff
+		like smooth terrains, since it utilizes brushes, which are 
+		absent in Probuilder
+	|
+	Import from Minecraft - 
+	MC Bedrocks: Use the structure block to export as a .glb file.
+		Open it in 3D Paint and export as .obj or .fbx. You can paint
+		on this 3D object directly, which is really neat. After 
+		exporting, drag n drop this file into Unity. 
+		Note: Flowers, signs, vines and pretty much anything with opacity
+			will be weird in some way - avoid using these. 
+			Uh-oh, but what about leaves then?: Minecraft textures are 
+			imported in a png file, which is somewhere among the folders 
+			created while drag n dropping. Simply find the leaf texture 
+			here and recolor the transparency to a color of your choice
+			such as dark green. 
+			I'm not sure, but I think that for each block type a 
+			standalone material gets created. I'm sure it's possinle to 
+			fiddle with it enough so that you can get transparency, but 
+			I haven't figured it out as of writing this.
+			Also, each chunk gets exported as a separate gameObject. 
+			For each chunk, you get 1 gobj for transparent stuff and 
+			1 gobj for "blocky" stuff.
+	MC Java: Use a tool called Jmc2obj. Link to mc wiki article:
+	https://minecraft.gamepedia.com/Programs_and_editors/3D_exporters
+	It exports an .obj file. I haven't quite figured out how to export 
+	to Unity perfectly, but the export settings in this app are self-
+	explanatory. The best I could achieve was a nice single-gameobject 
+	mesh, where each block had its own material. The materials had no 
+	albedo though, i.e. the dirt was just plain brown and cobble plain 
+	gray. Changing the cobble material's albedo to a cobble texture 
+	did the trick. Theoretically, it is possible to correct every block's
+	material using this workflow, but that's quite a lengthy process.
+	|
+	Character Controller - Slap this component on a gameobject, change its 
+	settings a bit and you'll have a first-person controllable 
+	character, which has the quintessential FP capabilities. Nice for 
+	quickly exploring the 3D environment you're building, but it has 
+	some quirks, for example that it's not affected by external forces,
+	meaning you couldn't make it use and elevator, if the elevator were 
+	a collider with a rigidbody and upwards velocity. Still very handy 
+	though!

@@ -1,0 +1,136 @@
+
+
+Architektúra projektu by Michal Ferko 28.7
+
+	OTÁZKY:
+		Prečo je vývoj iOs hier big pain?
+	
+		Keď updateovanie je zlo, akoto, že Emporea beží zautomatizovane?
+	
+	Prečo je [HideInInspector] zlé?
+	
+		akú nomenclatúru používať? _private, bIsHeld
+	
+	Všetky komponenty dávať do root objektu? Lenže tak to nemám s weighted 
+	pressure plate - ruší to prefab
+	
+		Čo je Invoke
+			Použ AsyncAwait (to čo je?)
+			Korutina zmyzne, ak jej gameobject sa vypne
+	
+		Čekuj open-closed principle!!!
+	
+	Radšej invokeRepeating, či v Update() checkovať fElapsed
+	
+	POZNÁMKY
+	
+	Úrovne programátora
+	
+	1. netusim ako to vytvorit
+	2. tusim ako to vytvorit
+	3. viem ako to vytvorit 
+	4. viem ako to vytvorit tak, aby to iny prog pochopil
+	5. 4 + aby to bolo efektivne (nie len rychlost, no ci to aj efektivne zmenit viem)
+	6. 5 + a vedel to pouzivat a menit 
+	7. viem to vytvorit tak, aby to ini pochopil, lahko vedel pouzit, aby to vedel lahko 
+		menit a aby to bolo efektivne (Michal F takehoto progra este nikdy nestretol)
+		
+	Teraz na SGD choď skôr speed programovania > architektonická celistvosť
+	
+	Technická dokumentácia hovorí, čo ako v kóde funguje. Gró firiem ju nemá 
+	
+	Myslieť na dependencies
+	
+	Technický dlh
+	
+	DRY (dont repeat yourself), 
+	KISS (keep it simple, stupid), 
+	SSOT (single source of truth - netahaj data o hracovi z hrac.cs a hrac_ui.cs !)
+	
+	Composition over inheritance (takto je stavané aj Unity)
+	
+	Návrhové vzory (design patterns) - refactoring.guru
+		-držia sa nižšie vysvetlených SOLID princípov
+		napr observer pattern - ked spravis triedu HealthObserver, iný prog podla 
+			názvu už vie, čo môže od tej triedy čakať
+		
+	Bacha na singleton - napr moze sa ti potom stat ze vela tried má dependency na 
+		singleton GameManager.cs 
+		
+		Ak singleton NEMÁ stav, je to akceptovateľné. 
+		Singletony sa používajú napr. na globálny access
+		
+	Actor pattern - používa sa napr na obrazovku - všetky components na roote
+		
+	Nástroje na dizajn architektúry:
+		UML diagramy (na malé projekty netreba. proste len kresliť na papier)
+		Entity relationship diagramy
+		
+	Odporuča preštudovať:
+		ECS - entity component system
+		Základné patterny 
+		
+	SOLID principles
+		S - single responsibility principle (self-explanatory, max 2-3 
+			zodpovednosti ak spolu súvisia)
+			"Kto má tušiť o existencii čoho?"
+		
+		O - open-closed principle:
+			open for extension (ľahko health classe pridáš Heal())
+			closed for modification (ak budem pridávať funkcionalitu, 
+				nemalo by to potrebovat zmenu pôvodnej triedy)
+			
+		L - Liskov substitution principle (porušenie sľubu)
+		
+		I - interface segregation principle (I zoned out :/)
+		
+		D - dependency inversion principle (využíva interface)
+			
+	50 tips and best practices for unity - gamasutra article z 2016
+	
+	Konfigurovateľnosť
+		-neskrývaj konštanty (magic numbers) v kóde
+		-ak to má zmysel, daj to [SerializeField]
+		-používaj headery [Header("HealthRelated")] <3
+			-header "internal references" - ked gameobject ma v sebe 
+			nejaky child co potrebujes
+		
+	Je ultra super mať textový súbor, ktorý opisuje 
+		-načo potrebuješ ktoré tagy
+		-načo potrebuješ ktoré layery
+	
+	pomalé metódy:
+		FindObjectOfType 
+			omnoho lepšie FindWithTag(str) - je určite menej tagov, než typeov
+		GetChild(index) - ak zmeníš hierarchiu, je to v keli. Radšej publicly
+			exposni to čo hladáš 
+			Jedine ok ak iteruješ cez všetky childs. 
+			
+	Čo najviac vecí rob ako prefab. Scéna by mala byť držiak na prefaby
+		I keď to je len UI čo použiješ raz, je to good pre version control
+		Využívaj nested prefaby, kde len vieš
+		
+	Hra by mala byť korektne spustiteľná z každej scény
+	
+	Všetky komponenty dávať do root objektu
+	
+	S grafikmi si jasne dohodnite referenčné rozlíšenie, nech po importe 
+		artu do hry nie je jedna vec 2x väčšia ako druhá
+	
+	Dobre rob UI, lebo 35% ľudí hrá na NTB (steam statistics)
+	
+	Folder structure - vyber si medzi tymito 2 prístupmi:
+		-Podľa typu (čo ty používaš as do 28.7)
+		-Podľa  (UI folder > Ui.cs, Ui.png, UI.shader)
+		
+	Na zdieľanú konfiguráciu používaj Scriptable Objects
+	
+	Každá trieda nech si uprace (napr. modifikuješ Time.timeScale? 
+		Potom ho daj na pôvodnú hodnotu)
+		
+	Najskôr sprav kód nech funguje, neskôr nech je pekný (v kontexte SGD 
+		4 týždňov)
+		
+	Vajk odporúča stránku sourcemaking.com, kde sú tie patterny vysvetlené
+		
+	

@@ -1,0 +1,252 @@
+
+	PREDNÁŠKA Team leadership
+	
+	-Bacha na rozhodnutia - hlúpe rozhodnutie a celý team ide dole
+	-Je lepšie mať uspokojivo dobrého gamedeva čo je komunikatívny,
+		než epického gamedeva čo absolútne nekomunikuje. Tento človek
+		bude vždy zlý člen tímu.
+	-Skvelá prax je nahrávať si porady, nech nezabudneš task. Vieš tak
+		presne čo kto povedal a genézu, ako sa došlo k finálnemu nápadu.
+	-Keď prezentuješ nápad, no nik ti nerozumie, je to tvoja chyba.
+	-Nápady treba odprezentovať a iní im majú robiť oponentúru.
+	
+	Proces kritiky:
+	-Keď ťa niekto kritizuje, nekritizuj späť. Ty máš za úlohu sa z tej
+		kritiky poučiť. Keď niekoho kritizuješ, stúpa im adrenalín, 
+		akoby sa na neho fakt fyzicky útočilo. Toto treba vedieť 
+		potlačiť. 
+		Keď niekoho kritizuješ, kritizuj len tú konkrétnu vec.
+		Ľudia často začnú sa zaberať do osobných urážok.
+		
+		Ranné studené sprchy ťa uzemnia, stoicizmus praktizuj, musíš
+		sa vzdať svojho ega. MEDITÁCIA???
+		
+		Taktiež keď niekto ťa kritizuje, a odpovieš mu "furt ma len 
+		krituzuješ >:(" - zapisuj si za čo si bol pochválený / čo
+		si práveže spravil dobre a pozri sa na to.
+		
+		Keď niečo kritizuješ, nebuď príliž blunt. Nikdy nevieš aký
+		shit prežívajú a čo pre nich môže byť the last straw 
+		predtým než vybuchnú.
+		
+	Vo Fatbotovi to majú vyriešené tak, že ak niekto fajčí, napr 
+	8 x 10 min, musí si to samozrejme odrobiť.
+	
+	Keď riešite problém, bavte sa len o tej téme, neriešte iné 
+	kecy.
+	
+	Nenúť ostatných makať toľko ako ty. Nie každý je na to stavaný.
+	
+	Ako nositeľ idei hry sa snaž aby každý mal z tej hry aj tú svoju hru.
+	Ak inými párkrát ustúpiš, ustúpia aj oni tebe.
+	
+	Je super ísť na GDC cez SGDA
+	
+	Tvorba hry:
+		sprav dobrý prototyp.
+		pitchni ho investorom.
+		dostaneš safe investment ->
+			máš peňáz na tvorbu hry
+			
+	
+	PREDNÁŠKA Business side of Games
+	
+	Keď tvoríš na konzolu, prechádzaš schvalovacím procesom aby si 
+	mohol dostať dev kit.
+	Ževraj keď tvoríš na mac, je to blech. No ajtak, je to ako konzoly,
+	že aspoň vieš čo čakať.
+	Na VR je riešenie performance big pain. Ak <60 fps, bude ti na 
+	vracanie.
+	Mobilné hry sa takto testujú: "Toliet and Bus test". Vieš hrať 
+	jednou rukou a vieš to hrať len chvíločkou?
+	Chceš robiŤ na mobil? Xamarin je C# nadstavba aj na Swift (iOs)
+	aj na [insert language] (Android).
+	
+	Keď tvoríš hry, najskôr tvor na PC & konzoly a až potom port na 
+	mobily. Ak to spravíš naopak, usery povedia "blech, cheap port
+	of a filthy pc game".
+	
+	Mutliplayer hry sa ťažko robia, lebo sú dead pokiaľ tam nemáš 
+	large playerbase - ostatní hráči sú vlastne tiež content.
+	
+	Local multiplayer hry sú veľmi cool, na konferenciach ich je vela 
+	a majú tam zdanlivý úspech lebo to hrajú kamoši, no at the end 
+	of the day, málo ľudí ich kupuje.
+	
+	15-20 yr old boys target audience je veľmi ťažký, lebo naň mieria
+	AAA hry.
+	
+	"Musí ťa baviť tvoriť, aj keď to čo tvoríš nie je to čo by si hral.
+	Pokiaľ nie, asi gamedev nie je tak úplne pre teba."
+		-Michal Ferko, SGD 2020
+		
+	Aj keď máš hru snov v hlave, akonáhle ju začneš tvoriť, tá predstava
+	sa tak trochu rozplynie.
+	
+	Target Audience: Nie len vek a pohlavie!:
+		Gamer Motivation Model - čo chceš v hre aby sa odohrávalo
+		Action - Social - Mastery - Achievement - Immersion - Creativity
+		Zober si z týchto kategórií (a ich podkategórií - vygoogli si toto)
+		jednu, max dve kategórie a okolo nich stavaj hru.
+		
+		Ak ideš robiť hru, ktorá sa podobá na nejakú inú, čítaj reviews 
+		a zapisuj si, čo sa opakuje - great story, solid combat.. a taktiež
+		si čítaj bad reviews, ktoré sú potenciál čo môžeš vylepšiť.
+		
+		Jednoducho povedané, poznaj svoje publikum.
+		
+	Hyper-casual hry: 2-5 min play session. Sú na mobily. Sú v portrait 
+	móde, aby si to hneď vedel hrať. Čiže landscape mód nebude chcieť
+	robiť.
+	
+	Business side of things:
+		-Business Proposition Model
+		-The Value Proposition Canvas: Ako robiť hru, ktorá je ako iná, 
+			len lepšia
+		-Crypt of the necrodancer: Tak strašne unique selling point 
+		že instantne o tom píšu
+		
+		Pred robením hry:
+			-rob market research
+			-nájdi unique selling point
+			-analýza competitionu, ako bude trh vyzerať za X rokov?
+				Totiž, ak vydáš FPSku a práve vyjde Fortnite, si v keli.
+			-mal by si robiť niche hry (malá cieľová skupina, čo bude 
+				nadšená) - napr. Train Station : entuziasti vlakov - je 
+				ich tak milión. 
+				Rule of thumb: Tvoje audience by malo byť aspoň milión-dva
+		
+	Cuphead: Spravili to ťažké preto, lebo ak by to bolo lahké a týmpádom
+	by si fičal cez kontent, museli by ho robiť enormne veľa
+	
+	Z free2play games 2% ľudí niečo zaplatia, z nich 5% zaplatia 1000€+ 
+	dokopy
+	
+	PREDNÁŠKA Aká je úloha art directora
+	
+	art director má v hlave celú víziu ako hra bude vyzerať, usmerňuje 
+	bežných arťákov. Bežný arťák ani nemusí vedieť presne, do akého 
+	projektu kresba je, len dostane od art directora čo má spraviť
+	
+	art director musí vedieť vopred čo môže koľko trvať, či to bude mať
+	dopad na performance
+	
+	vzdáva sa toho vlastného štýlu, všetci robia v tom istom štýle, lebo 
+	sa jedná o produkt
+
+	musí vedieť, rovnako ako arťák, vysvetlovať veci aj nearťákom. Taktiež
+	musí vedieť kočíkať krehké umelecké ego.
+	
+	diagram ako na seba naväzujú screeny (aký si kreslil pri robení SOČ)
+	sa dá robiť v Adobe Ilustrátore
+	
+	myslí na to, čo je pre hráča podstatné / nepodstatné. Background je napr
+	menej podstatný, tak neinvestuj doň toľko času
+	
+	art director vie aké emócie má hráč zažívať, čo nemá zažívať a ako to 
+	artom dosiahnuť
+	
+	pozná technické možnosti engineu a platformy. Rozumie sa optimalizácií,
+	času tvorby projektu a ceny. Tiež vie, ako recyklovať projekty. Napr. 
+	Candy Crush s Hello Kitty skinom
+
+	Predprodukcia hry:
+		Research
+		Mood boards
+		Skice nosných prvkov
+		Skice jednotlivých screenov
+		Vizuálny prototyp
+		Prehodnotenie procesu produkcie
+		Začiatok produkcie
+		
+	Ideálne je vymyslieť game design a až potom na ňom stavať vizuály hry.
+	Jednoducho povedané, ak je ten koncept fun aj bez tej grafiky, si 
+	vyhral. 
+	
+	Veľmi pomáha robiť "fake screeny". Čiže napr. keď ideš programátora 
+	poprosiť, aby spravil nejaký particle effect, ukážeš mu nakreslený
+	mockup toho, ako by ten efekt mal vyzerať. 
+	
+	PREZENTÁCIA 2D Animácia
+	
+	Program Spine je na robenie 2D skeletal animácií
+	
+	Kniha The Animator's Survival Kit by Richard ?
+	
+	Nevieš animovať beh? Vygoogli run cycle, vyber si taký, čo sa ti 
+	páči a prekresli naň tvoju postavičku!
+	
+	PREDNÁŠKA Gamedesign
+	
+	acquisition, retention, monetization model
+	bratislavsky game jam
+	global game jam trnava
+	
+	organizácie:
+		SGDA
+		Butterfly Effect
+		
+	konferencie:
+		GDS Praha
+		White Nights
+		Game Access Brno
+		Butterfly Effect má gate-y 
+		
+	How teh gaem is made
+	Concept
+		Idea
+		Core loop
+		Mood boards
+	Preproduction
+		Vision
+		Target audience
+		Market research
+		Prototype / minimum viable product
+	Production
+		Content
+		Metagame
+		Benchmarks
+		Launch
+		
+	Pri brainstormingu:
+		Jeden musí zapisovať
+		Jeden musí byť Hitler, čiže je zdpovedný za vybranie toho finálneho
+		nápadu
+		Čo najskôr si zadať obmedzenia - či už či je to 2D/3D, aký štýl 
+		animácie, perpsektíva
+		Odporúčanie:
+			V prvom kole nech sú všetci ticho a píšu si svoje nápady na
+			papier, aby sa vzájomne nerušili
+			
+	PREZENTÁCIA Git
+	
+	Commit - záznam projektu z istého času
+	Workspace - priečinok s projektom, v ktorom je git
+	Repository - zoznam commitov (história)
+	Remote
+	Index
+	
+	Clone, push, pull / fetch
+	
+	fetch - ukaze ti co je na masine
+	merge a rebase su si podobne
+		rebase operuje na jednej linii
+		merge vytvori novu liniu a potom ju mergne s master
+		
+	pri premenovaní veci v Unity premenuj aj meta súbor!
+	keď robíš v tíme čo používa git, používajte prefaby
+	git je case sensitive, no windows je case sensitive. takže nedávaj
+	veciam mená s rovnakými písmenami!!!!
+	
+	HxD hex editor
+		windows používa newline znak pomocou 2 charov a linux len 1 char
+		v notepade si vieš meniť, akými koncovkami dávaš newlines
+		
+	V GitLabe nastav line endings (tools > settings??) na tretiu možnosť
+		
+	
+	
+	
+
+	
+	

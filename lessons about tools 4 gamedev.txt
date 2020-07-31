@@ -1,0 +1,6 @@
+
+	Unity:
+	-2D Animation package - allows you to rig 2D sprites
+	
+	-Mixamo: A thing where there's loads of premade animations.
+		Perfect for making quick stuff for gamejams

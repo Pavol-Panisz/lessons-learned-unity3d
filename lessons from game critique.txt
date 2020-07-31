@@ -1,0 +1,55 @@
+
+	OTÁZKY
+		
+		-game feel, čo ľudia očakávajú berúc reference z 
+		reálneho sveta- 
+			aký veľký problém to je, ak náš výťah
+			nefeeluje tak dobre - je "drevený", príp. ako to 
+			maskovať?- že artom odvôvodníme, prečo je ten výťah
+			tak drevený. 
+		
+		|_ išli by ste vo vašich hrách do "fyziky", keď je 
+		taká tricky?- ako ten výťah
+		
+		-ako všetky tieto muchy, čo ste nám vyčítali nájsť?
+		musíme proste strašne veľa v hlave 
+		nad všetkým rozmýšľať - mať obrovitánsku 
+		predstavivosť?
+		
+		-treba odvôvodniť (graficky, príbehovo) veci, ako napr 
+		doublejump, prečo jeden musí spraviť telo a druhý 
+		človek?
+		
+		[toto je mimo prednášky]
+		-prečo ostať na Slovensku a tu robiť hry? Prečo si 
+		radšej "nezachrániť kožuch" a zdrhnúť do zahraničia?
+		
+	NÁPADY K NAŠEJ HRE, ktoré mi došli pri počúvaní kritiky:
+	
+		-Šťavnatý feel - keď sa hráči spoja / odboja, daj 
+			screen shake, particle effect, nejaký flash atď 
+
+	Z KRITIKY HIER od Michala Ferka a Tibora Reptu
+
+		27.7 Keď predstavuješ projekt iným:
+		Buď špecifický - "naša hra má humorný nádych" je 
+		príliž obsiahle. Povedz "je to slapstickový humor /
+		situačný - prichytíš zajaca ako je na mobile na 
+		svadbe" alebo také niečo. Proste podaj čo naj-
+		špecifickejší obraz o hre, aby si vedel predstaviť 
+		v hlave, čo sa v tej hre robí. ideálne prezentácia 
+		preplnená artom, videami z prototypu hry, atď.
+		keywords: moodboardy, concept-art, prototyp 
+		
+		Nezačínať prezentáciu príbehom hry, no gameplayom
+		
+		Ak je to movement-heavy hra, najskôr sprav movement,
+		nech dobre feeluje. 
+		
+		V prezentácií málinko textu, všetko to ukazuj v 
+		obrázkoch
+		
+		Achievementy nedávaj do prototypu, to je posledné 
+		zaujímavé v hre. Je to len bonus.
+		
+		

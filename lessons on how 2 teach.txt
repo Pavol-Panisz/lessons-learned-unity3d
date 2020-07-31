@@ -1,0 +1,18 @@
+
+How 2 teach the Unity editor basics:
+	-Start by BRIEFLY explaining what all the windows do,
+		so that people aren't overwhelmed.
+	-Explain things by creating a problem and then
+		showing the solution. For example:
+		I want to have this sprite behind this sprite 
+		at all times, but currently, it's not this way.
+		"For such cases, use sorting layers".
+		Or
+		So I drew this sprite and I want it to be exactly
+		one unit wide. It is made of 16x32 pixels.
+		"For such cases, set pixels per unit to 16 - so 
+		there will be 16 pixels in one unit"
+	-Make sure the mouse is ultra visible. The 
+		default mouse on PCs is really tiny and not
+		at all visible on a larger screen, for example
+		when doing a presentation in front of an audience.

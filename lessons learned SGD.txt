@@ -1,0 +1,47 @@
+
+	24.7 Delegate
+		someDelegate += someVariable => SomeFunction();
+		-that someVariable is used idk why
+		common practice: name that variable "_"
+		
+	25.7. "Call-me-each-frame" vs "Call-me-once" methods:
+		It's important to distinguish methods, which only
+		need to be called once to finish their role, vs.
+		methods which need to be called each frame to move
+		towards a goal.
+		
+		I usually call the "call-me-once" methods 
+		"StartX" and the "call-me-each-frame" methods 
+		"MoveTowardsX" 
+		
+	26.7. 2D Universal Render Pipeline project setup
+		After having created a standard 2D project, import 
+		the Universal Render Pipeline (URP) package from  
+		package manager.
+		Afterwards, right click in explorer > create >
+		rendering > universal render pipeline > 
+		pipeline asset (forward renderer).
+		This step will also automatically create a pipeline
+		asset render (or something like that, idk). For 2D
+		purposes, delete this additional asset and instead 
+		do right click > create > rendering > universal 
+		render pipeline > 2D renderer. 
+		Drag the 2D renderer into the pipeline asset's 
+		general > renderer list.
+		Finally, go to edit > project settings > graphics >
+		and drag the pipeline asset into the scriptable 
+		render pipeline asset field at the very top.
+		
+	26.7. Shadergraph sprite outline shader bug
+		In the lessonslearned folder > Images, find the 
+		"Shadergraph_visual_bug.png". It shows that even 
+		though in the scene view, a shader may look bugged,
+		it is actually correclty rendered in the game view,
+		so no worries.
+		
+	30.7. HTML tags in text
+		Want to make a letter in your UI text component 
+		coloured? You can do:
+		I am<color=blue>very</color>happy
+		Don't forget to tick rich text
+		

@@ -16,3 +16,13 @@ How 2 teach the Unity editor basics:
 		default mouse on PCs is really tiny and not
 		at all visible on a larger screen, for example
 		when doing a presentation in front of an audience.
+		
+	-In a YT video, you can add named regions in the play bar
+		Use em to describe what this section of the video explains
+		
+		Example: https://www.youtube.com/watch?v=c57qq2nE3B0&t=1254s
+		
+	23.11 How 2 teach someone a new technology when they're using
+		aon old one 
+		
+		Use the A.D.K.A.R. method. (google it)

@@ -71,6 +71,16 @@
 	where tangens is not defined (Mathf.Atan would return a 
 	division by zero error)
 	
+	added 12.8.2020 during SGD:
+	Quick maths to calculate a vector's angle in degtees:
+		float toAng;
+        toAng = Mathf.Atan2(vect.y, vect.x) * Mathf.Rad2Deg;
+        if (Mathf.Sign(toAng) == -1) toAng += 360f;
+		
+		//that last if statement is because 
+		//toAng in the 2nd and 3rd quadrant will be (-180 - -359),
+		//but I want it as (180 - 359)
+	
 -20.6. Rigidbody Sleeping Mode:
 	When you make a rigidbody and leave it to collide with, say,
 	the ground, you'll notice that it won't register the ground's
@@ -255,7 +265,16 @@
 		case with Coroutines.WaitThenExecute(float, voidDlg) in
 		metroidvania)
 	
-
+29.1.2021 In Visual Studio, don't have the "Attack to Unity" play 
+	button
+	
+	This most likely means that you didn't install the extension
+	Unity Tools for Visual Studio. You need to install it NOT via
+	the VS Extensions view, but rather the VS installer. Just 
+	click "modify" and there in the search bar, type the 
+	afforementioned tools and make sure to install them. Photo
+	in the folder Images called 
+	"VS_Dont_Have_Attach_To_Unity_Fix.png"
 
 
 

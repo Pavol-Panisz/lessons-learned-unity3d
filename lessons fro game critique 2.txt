@@ -1,0 +1,30 @@
+
+	Art má byť tvorený tak, že keď prižmúriŠ oči, vidíš to
+	čo má byť v popredí (postavičky, atď)
+	
+	Pri prezentovaní hry nezačínaj príbehom, no mechanikami!
+	
+	Najskôr vyšperkovať movement / jump, aby level dizajnér 
+	presne na tie mechaniky vedel tvoriť level
+	
+	Tools pre level dizajnéra: Musí vždy vidieť, do akej 
+	maximálnej vzdialenosti vie character skočiť (merged, 
+	telo, duch)
+	
+	Arťáci musia vždy myslieť na to, čomu dajú vizuálne veľa
+	detailu. Flappy bird napr. nemá ultra detailované pozadie..
+	Characters, prekážky, plošinky, enemáci, práve toto robiť
+	ako prvé!
+	Hra je javisko a svetlo svieti na hercov. Nedávať focus 
+	point na pozadie
+	
+	Pri prezentovaní svojej práce pred mentorom je fajn
+	keď tam aj dávaš momentálne TO-DO listy a píšeš že aké 
+	problémy ste zatiaľ identifikovali v projekte
+	
+	Je užitočné si napísať piliere hry, na ktorých sa zakladá.
+	Čiže si definovať, Čo v tej hre definitívne bude (aké
+	mechaniky, vizuály, atď) a čo nie
+	
+	
+	

@@ -1,0 +1,324 @@
+
+	25.9. Breakpoints in Visual Studio
+		If you set a breakpoint, the code executes as 
+		expected but stops at the breakpoint. In the
+		"Watch" window, you can add variables whose value
+		you wish to track. Or, you can also hover over a 
+		variable and it will show you its current value.
+		
+	25.9. Do while loops are useful!
+	
+	25.9. You can also foreach arrays
+	
+	14.10. readonly vs const
+		Readonly is just like const, but you CAN change
+		its value, only in a constructor though
+		
+	29.10 Virtual keyword 
+	
+		When you make a method abstract, it can't have a 
+		body. But in a parent class with a virtual method,
+		that method CAN have a body but just like with
+		an abstract method, you CAN override it :)
+		
+	29.10 Calling a parent's constructor
+	
+		In your derived class, if you wan't to call 
+		your parent's constructor, you can do:
+		
+		public ChildClass(int a, int b) : base(b) {
+			
+			// The base class' constructor, which takes
+			// one int parameter will be called
+		}
+		
+	29.10 base keyword
+	
+		In a derived class, you can call it's base class'
+		method using base.Method()
+		
+	29.10 is keyword
+	
+		You can check, whether a class inherits from another
+		class: if (MyClass is SomeBaseClass)
+		
+	29.10 ?? operator
+	
+		the following two are equivalent:
+		
+			if (myClass == null) myClass = new SomeClass();
+			else myClass = anotherInstance;
+			
+			myClass = anotherClass ?? new SomeClass();
+		
+	29.10 Indexers
+	
+		They allow you to treat a class as if it was indexable.
+		This is for example how arrays are implemented in C#.
+		Example:
+	
+		public class Vector {
+		
+			private int x;
+			private int y;
+			private int z;
+			
+			public int this[int index] {
+			
+				get {
+					if (index == 0) return x;
+					if (index == 1) return y;
+					if (index == 2) return z;
+				}
+				set {
+					if (index == 0) x = value;
+					if (index == 1) y = value;
+					if (index == 2) z = value;
+				}
+				
+			}
+		}
+	
+	8.11. Try Catch Finally
+	
+		try {
+			//try to do some stuff
+		}
+		catch(Exception e) {
+			//if any exception occurred, handle it
+		}
+		finally {
+			//clean up after yourself
+		}
+		
+		You already know the try and catch blocks. Catch 
+		catches the specified exception you tell it to 
+		catch. Every type of exception, be it 
+		DivisionByZeroException or ArgumentNullException
+		inherit from classes, that inherit further and 
+		further, but they all arrive at the base class 
+		called "Exception".
+		
+		Exception - this tells you that something went
+		wrong with your code, but doesn't contain much 
+		info about what exactly it was.
+		
+		NOTE: You can chain multiple catch blocks
+		
+		catch(DivisionByZeroException e) {
+			Debug.Log(e.Message);
+		}
+		catch (NullArgumentException e) {
+			Debug.Log(e.Message);
+		}
+		catch(Exception e) {
+			Debug.Log("An exception occurred")
+		}
+		
+		In good IDEs, when you mouse over a method, such
+		as int.Parse(), it will show you what Exceptions 
+		can occur with that given method.
+		
+		What about the finally block?
+		
+		The finally block runs whether or not you got an 
+		exception. It's useful for cleaning up after 
+		yourself. For example, when you open a stream in 
+		the try block, you would close it in the finally 
+		block - the finally block is in the same scope as 
+		try block, although they enclose two separate pairs
+		of curly brackets :O
+		
+		try{...}
+		finally{...}
+		
+		A try block always needs to be accompanied by either
+		a catch block or a finally block or both!
+		
+		
+		Update: 4.1.2021 
+		
+		Even when you handle an exception using the catch statement,
+		your IDE will most likely still throw an exception.
+		In Visual Studio, to mitigate the program pausing on 
+		handled exceptions, go to Exception settings and find
+		"Commong Language Runtime Exceptions". Uncheck that field.
+		Now, only unhandled exceptions will pause your code:
+		
+		
+		int n = int.Parse("asd"); // Will still pause the program
+
+		Random rngGenerator = null;
+		try
+		{
+			Console.WriteLine(rngGenerator.Next()); // Won't pause
+			
+			// When an exception occurs, anything below the line that
+			// caused it won't be written
+			Console.WriteLine("succesfully written a random number"); 
+		}
+		catch (NullReferenceException)
+		{
+			Console.WriteLine("string was null!");
+		}
+		Console.ReadLine();
+
+		
+	8.11. Using statement
+		
+		using (SomeClass obj = new SomeClass()) {
+			/.. do stuff with the object
+		}
+		
+		When the using block finishes, it makes sure to clean 
+		up after the class SomeClass. Every class that uses
+		the IDisposable interface can be put into a using 
+		statement.
+		
+		For example, the class StreamWriter has a Close()
+		method. Because it inherits from the IDisposable 
+		interface, it must have the method Dispose()
+		which inside of it calls StreamWriter's Close() 
+		method. Very cool!
+	
+	25.11. Generics, in C++ called Templates
+	
+		void GenericFunc<T>(T genericParam) {}
+		T GenericFunc<T>(T genericParam) {... return T}
+		U MyDict<TKey, UVal>(T key, U val) 
+			{... override [] to return U}
+			
+		generic class:
+		
+			class MyList<T> {
+			
+				private T genericArr[];
+			
+				public MyList() {}
+			}
+		
+		limit a function so that it can accept any type
+		that derives from something:
+			
+			public PrintMaxSpeed<T>(T vh) where T : someVehicle 
+			{
+				Console.WriteLine(
+					$"Max speed of {vh.name} is {vh.maxSpeed}");
+			}
+			
+		note: the same can be done with generic classes
+		
+	26.11. reference vs value types / stack & heap / (un)boxing
+	
+		Almost all .NET languages such as C# or Visual Basic
+		use the CTS (Common Type System) feature of reference 
+		and value types. 
+		
+		VALUE TYPES actually hold their value. They're usually 
+		small types like int or char
+		
+		REFERENCE TYPES, on the other hand, hold only a 
+		reference to the object. Think of them as a pointer
+		that points at another place in memory.
+		
+		big difference to remember:
+		
+			// VALUE TYPES (int, char, struct :O,..)
+			int a = 17;
+			int b = a; // only copied the value of "a" into "b"
+			a = 257; // a: 257 | b: 17
+			
+			// REFERENCE TYPES (classes, interfaces i think, ..)
+			Car carA = new Car("skoda");
+			Car carB = carA; // carB now references carA, so 
+			//                  whenever you think of carB, you
+			//                  really think of carA !
+			//                  (MeatCanyon sketch quote lol)
+			carA.brand = "kia"; //both carA and carB are kias
+			
+			NOTE: strings are also reference types for memsize
+				reasons: the stack is small, the heap is huuuge
+				and has the garbage collector scouring it.
+				however string they have so-called value type
+				semantics, so if you do:
+					string strA = "hello";
+					string strB = strA; // strB references strA
+					strA += " world";
+					// strA is "hello world" yet strB is "hello"
+			
+		
+		Another concept to understand is the STACK and the HEAP.
+		
+			These are kinda like two different types of memories.
+			
+			THE STACK stores value types and THE HEAP stores 
+			the actual values of reference types. To illustrate:
+			
+			int & char are value types
+			string is a reference type
+			
+			STACK                          HEAP
+		    (kinda for VALUE TYPES)       (REFERENCE TYPES' data)
+			
+			int = 16
+			int = 5
+			string ----------------------> "Hello world"
+			char = 'h'
+			
+			So as you can see, reference types are "stored"
+			on the stack as well, but the actual data that 
+			they hold is stored on the CLR-managed heap.
+			(CLR - Common Language Runtime. Some kind of 
+			model made by Microsoft)
+			
+		Yet another concept to understand is BOXING and UNBOXING
+			
+			When you have a value type and you want to turn it
+			into a reference type, you can do that via a process
+			called BOXING. The value types data is copied onto the 
+			heap.
+			
+			The opposite process is called UNBOXING. It is when
+			you have a type on the heap and you want to turn 
+			it into a value type. This doesn't necessarily mean
+			that it will be put onto the stack. For example,
+			an array of bools is stored on the managed heap and 
+			the bools (value types by default) are stored here
+			too, in their unboxed form.
+			
+	26.11. How arrays work:
+		This stuff is based on the previous note,
+		"reference vs value types / stack & heap / (un)boxing"
+		
+		An array is a reference type. Demonstration:
+		
+			int[] arrA = {1, 1, 3,};
+			int[] arrB = arrA; // arrB references arrA
+			//                    (is like an alias for it)
+			
+			arrA[0] = 247; // both arrays hold {247, 2, 3}
+			
+		When you make an array of reference types, everything is
+		fine. However, when you make an array of value types,
+		such as ints, they get unboxed. Demonstration using the 
+		arrays declared above:
+		
+		arrA[1] = arrA[0]; // merely copies the values.
+		//                    arrB will reflect this.
+		arrA[0] = arrA[1] // only copies el 1's value into el 0
+		
+		// however:
+		Car carsA = new Car[]{new Car("honda"), new Car("kia")}
+		Car carsB = carsA; //  carsB references carsA.
+		carsA[0] = carsA[1] // And what's more, carsA[0] now 
+		//                     references carsA[1], so basically
+		//                     everything is now carsA[0]
+		
+		NOTE: I put a txt file into the Sample Code folder 
+		called "ref val arr.txt". It's a good excercise on
+		understanding the inner workings of reference / value
+		types and arrays
+		
+		
+		
+

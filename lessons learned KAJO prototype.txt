@@ -1,0 +1,30 @@
+
+	19.9. using directive discoloration
+		If you have a using directive and it's not bright red
+		but rather, dim, it means that it's unnecessary; the
+		IDE detects that no content in it is used in the 
+		current script file.
+		
+	19.9. GUIContent
+		The GUIContent class contains info such as name, texture and 
+		tooltip for a particular label or menuitem
+		
+	19.10 namespace not found
+		Do yo have a class in your project in a package but Unity 
+		can't find it? 
+		Uninstall the visual studio code editor package, then 
+		remove the .vscode, .sln and all .csproj files, then reinstall
+		the package and downgrade it to version 1.13
+		
+	15.1. Awake
+		Use this to setup references to other components (can be on 
+		other gameobjects, not just on this one) via GetComponent, if
+		you wish.
+		However, don't call any of their methods here, you don't know
+		in which order they calls will get executed.
+		
+	24.1 Run a webgl build locally
+	
+		Browsers don't support running files locally, so here's a quick 
+		thread that shows how to do it:
+		https://stackoverflow.com/questions/62517962/how-do-i-run-a-local-unity-webgl-file-url-build

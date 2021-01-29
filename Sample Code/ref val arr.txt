@@ -1,0 +1,80 @@
+
+	Value types, Reference types & Array inner workings
+		
+		If you understand this, neat!
+		
+		Console.WriteLine("value types test\n");
+		int a = 17;
+		int b = a;
+
+		a = 254;
+
+		Console.WriteLine($"a: {a} b: {b}");
+
+		int[] arrA = { 1, 2, 3 };
+		int[] arrB = arrA; // arrB now references arrA
+
+		arrA[0] = 1254; // both arrA's and arrB's 0th elements match
+		Console.WriteLine($"arrA: {arrA[0]} arrB: {arrB[0]}");
+
+		// this is the same as the int a, int b example
+		arrA[1] = arrA[0]; // the 0th and 1st now match
+		arrA[1] = 555; // but only the 1st changes here
+
+		Console.WriteLine($"arrA[0]: {arrA[0]} arrA[1]: {arrA[1]}");
+		Console.WriteLine($"arrB[0]: {arrB[0]} arrB[1]: {arrB[1]}");
+
+		Console.ReadLine();
+		Console.Clear();
+		Console.WriteLine("reference types test\n");
+
+		Car[] carArrA = new Car[] { 
+			new Car("mazda"),
+			new Car("honda"),
+			new Car("skoda")
+			};
+		Car[] carArrB = carArrA;
+
+		carArrA[0].name = "kia";
+
+		Console.WriteLine($"carArrA[0].name: {carArrA[0].name} carArrB[0].name: {carArrB[0].name}\n");
+
+		carArrA[1] = carArrA[0];
+		carArrA[1].name = "tatra";
+
+		Console.WriteLine($"carArrA[0].name: {carArrA[0].name} carArrA[1].name: {carArrA[1].name}");
+		Console.WriteLine($"carArrA[0].name: {carArrA[0].name} carArrB[0].name: {carArrB[0].name}");
+
+		Console.ReadLine();
+		Console.Clear();
+		Console.WriteLine("string: reference type anomaly\n");
+
+		string strA = "hello";
+		string strB = strA;
+		strA += " world";
+
+		Console.WriteLine($"strA: '{strA}' strB: '{strB}'");
+
+		Console.ReadLine();
+		Console.Clear();
+		Console.WriteLine("List initialization differences\n");
+
+		List<int> listA = new List<int> { 7, 3, 5, 18, 1};
+
+		// Creates a list and populates with listA's values
+		List<int> listB = new List<int>(listA);
+		//
+		// Creates a list that is basically an alias for listA
+		//List<int> listB = listA;
+
+		listB.Sort(); // Will this also sort listA?
+
+		Console.WriteLine("listA: ");
+		foreach (var n in listA) { Console.WriteLine(n); }
+		Console.WriteLine("\nlistA: ");
+		foreach (var n in listB) { Console.WriteLine(n); }
+
+		Console.ReadLine();
+		
+		
+		

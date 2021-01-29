@@ -28,6 +28,7 @@
 		render pipeline > 2D renderer. 
 		Drag the 2D renderer into the pipeline asset's 
 		general > renderer list.
+		Also, don't forget: quality > HDR (checkmark this)
 		Finally, go to edit > project settings > graphics >
 		and drag the pipeline asset into the scriptable 
 		render pipeline asset field at the very top.
@@ -41,7 +42,278 @@
 		
 	30.7. HTML tags in text
 		Want to make a letter in your UI text component 
-		coloured? You can do:
+		coloured? You can do:
 		I am<color=blue>very</color>happy
 		Don't forget to tick rich text
+		
+	3.8. Why won't my 2D character rig?
+		TL;DR: rename from .psd to .psb. Or did you forget 
+			to apply a Sprite Skin component?ľ
+		
+		Sooo, you've imported a .psd, want to rig it but 
+		there seem to be no separate layers? Well that's 
+		because the psd importer slices a .psd into mutliple
+		ready-to-rig&skin sprites when the file extension 
+		is .psb ("photoshop large file format or something, 
+		idk").
+		
+	3.8. One-way platforms
+		Use the Platform Effector 2D and for the collider 
+		which is supposed to be one-way-only, don't forget to 
+		check isUsedByEffector
+		
+	4.8. Remove a specific instance of a class in a list:
+		Iterate the list via a for-loop and if 
+		ReferenceEquals(desiredObject, list[iii])
+		is true, list.RemoveAt(iii)
+		
+	5.8. Array length & null
+		When you have an array with the length 0, it's not 
+		null!!! Same goes for all the other 
+		collection-types.
+		
+	5.8. Cast Vector3 to Vector2
+		vect3 = (Vector2) someVector3;
+		
+	11.8. The transform rotation in the inspector may be 
+		different to that output by 
+		Debug.Log(transform.localRotation.eulerAngles).
+		As a rule of thumb, always rely on the Debug.Log 
+		value. The inspector is just for human readability,
+		but is NOT reliable for code purposes
+		
+	12.8. Rotating when a rigidbody component is applied
+	
+		If it's a rigidbody2D, rotate around the Z axis 
+		using rigidbody2D.rotation!!!
+		
+		Setting the rotation via transform will produce
+		unexpected physics results
+		
+	12.8. LateUpdate
+		Gets called once every script's Update method has
+		been called. Useful for camera movement for example.
+		
+	13.8. Out keyword enforces the change of a parameter in a function
+		(I'm sure there's a better way to do this but for now, this is 
+		all I know. Maybe the same intent can be better achieved with 
+		interfaces, I heard..)
+	
+		Say you're making a fade in n out script.
+		You have an "opaque -> black" part of the script and a 
+		"black -> opaque" part.
+		What if once the screen goes completely dark, you'd like to 
+		invoke some delegate and only after all of its content is done 
+		executing, start the "black -> opaque" transition?
+		
+		Well, you could have a public bool canFadeOut, which if is true, 
+		would allow the "black -> opaque" transition. But how do we 
+		enforce that in the delegate, canFadeOut WILL be updated?
+		
+		Enter: the out keyword! The out keyword works exactly like a 
+		pointer. But if you have a delegate with an out param, and 
+		subscribe a method with an out param to this delegate, the 
+		compiler will throw an error if you don't modify the out 
+		param, which got passed into this method.
+		So all you have to do is:
+		
+			//in fade script: 
+			public void outDlg(out bool b);
+			public outDlg onFadeMiddle;
+			
+			public bool canFadeOut=false;
+			
+			private void Update() {
+				//go to completely dark
+				
+				if (completelyDark) {onFadeMiddle?.Invoke(out canFadeOut);}
+				
+				if (canFadeOut) //go to completely opaque
+			}
+			
+			//-------------------------------------------------------------
+			//in another script:
+			fadeScript.onFadeMiddle = StuffToDoWhileScrBlack;
+			
+			private void StuffToDoWhileScrBlack(bool out finished) {
+				//do something and once its done, set finished to true
+				finished = true;
+			}
+			
+	14.7. Constructor called even for arrays visible in the inspector
+	
+		Picture this: 
+		
+		public class GravityObject {
+			private Vector3 originalPosition;
+			
+			public GravityObject() {
+				originalPosition = transfrom.position;
+			}
+		}
+		
+		Now, I have an array of GravityObjects serialized in the inspector.
+		It's interesting to see that even when I populate the array in the 
+		inspector, the constructor for every GravityOject in this array 
+		gets called.
+		
+	18.8 Sprite shape is all one texture :(
+		Say you have a grass and a dirt texture. If you want the dirt 
+		texture to appear on the side of a cliff and have the sprite shape 
+		profile already set up, do this (unintuitive) thing:
+		
+		On the edges of your grass, set the curve to that "V" shape type 
+		in the 3-type-picker-boxes
+		
+	19.8 'Using' keyword
+		It can be used as a statement to automatically dispose of an object
+		once it's out of the enclosing code block. It's conceptually the 
+		same as the with .. as .. statement in Python
+		
+		using (var someObj = new someObject()) {
+			//do stuff with the object
+		}
+		//someObj will have been cleaned up after at this point
+		
+	19.8 casting
+	somewhere in code:
+	
+	target as GlowControl; //the as keyword casts target as a GlowControl. same as doing (GlowControl)target
+	
+	I think.
+	
+	20.8. Reversing animations
+		
+		In this example, I'll use a vignette animation. It goes from no 
+		vignette at all to completely black. I want the animation to start 
+		playing once two certain objects farther away, than is 'maxDist'.
+		Once they re-enter the 'maxDist' range, reverse the animation.
+		
+		//first, set up the animation transitions in the Animator inspector 
+		//window like so:
+		
+			[Entry]       [Vignette_Animation]
+			   V
+			   V		//note that there is no transition between Entry and Vignette_Animation
+			   V
+		 [Empty State]
+		 
+		//Don't forget to untick Vignette_Animation's Loop Time
+		//next, In the animator create a float parameter called "Speed".
+		//After having done this, for the Vignette_Animation state, give the "speed" field 
+		//a multiplier and set it to "Speed", so that we can change it in code. 
+		//(Yeah this is a bit confusing, refer to the image "Reverse_Animation_Setup", in 
+		//the images folder)
+		 
+		//next, take a loot at this code, the explanation will be given afterwards, or 
+		//read the TL;DR
+		//TL;DR: normalizedTime keeps always increasing/decreasing behind the scenes 
+		//and you can't set vignetteAnim.speed directly >.<
+		
+		Animator vignetteAnim;
+		int animationLayer=0;
+		
+		private void Start() {
+			vignetteAnim = GetComponent<Animator>();
+			vignetteAnim.PlayInFixedTime("Vignette_Animation", animationLayer);
+		}
+
+		private void Update() {
+			if (isFartherThanMaxDist && vignetteAnim.GetCurrentAnimatorStateInfo(animationLayer).normalizedTime <= 1f)
+			{  
+				vignetteAnim.SetFloat("Speed", 1f);     
+			}
+			else if (!isFartherThanMaxDist && vignetteAnim.GetCurrentAnimatorStateInfo(animationLayer).normalizedTime >= 0f) {
+				vignetteAnim.SetFloat("Speed", -1f);
+			}
+			else {
+				vignetteAnim.SetFloat("Speed", 0f);
+			}
+		}
+		
+		//In Start(), we play the animation on layer 0. We do this not only because it doesn't 
+		//get played by default, but also so that we can get information about this animation 
+		//using GetCurrentAnimatorStateInfo(0) - the 0 is the layer parameter.
+		
+		//GetCurrentAnimatorStateInfo(animationLayer) returns an object containing various info about 
+		//that layer's currently played animation. We're interested in normalizedTime.
+		//normalized time is actually made up of the animation's normalized time + the number of 
+		//loops completed. So 6.5 means we played 6 full loops and are in the middle of the 7th one, even 
+		//though the animation is not looping. (It is looping, but you can't see it. The displayed frame 
+		// is stuck on that animation's last frame, but normalizedTime continues increasing/decreasing.)
+		
+		//Anyway, consider this example:
+		//if the Loop Time checkbox is unticked, normalizedTime is 3.5 and we decide to 
+		//reverse playback time, the animation won't start actually reversing until 2.5 loops pass.
+		//This is the reason why we only allow the Speed float to be anything other than 0 only if 
+		//normalized time is in range (0-1)
+		
+		//Also, we reverse the animation NOT by setting vignetteAnim.speed, but rather the "Speed"
+		//float parameter which acts as a multiplier for vignetteAnim.speed. 
+		//Setting vignetteAnim.speed = -1 doesn't reverse the animation, it merely just stops it, for 
+		//some annoying reason. But if you do it using the "multiplier-method", it works somehow :p
+		
+		20.8. Particle Effect Editor window 
+			You can toggle that annoying window with start lifetime and stuff.
+			Refer to 
+			Images > "Particle_Effect_Window.png"
+		
+		22.8. UI Image radial fill.
+			UI Images have a fill type property in the inspector. One of those properties allows for 
+			a radial fill of the sprite :os
+			
+		22.8 Use bool TryGetComponent(out component)
+		
+		22.8. Searching in the Editor
+			The hierarchy, scene, console and project windows all have a search bar, where 
+			you can look up specific objects, assets, debug logs, etc
+			
+		22.8. Wanna freeze both the rotation and position on only ONE axis or a rigidbody?
+			rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+			
+			It's a bitwise OR operation. It works cause RigidBodyConstraints are bitmasks.
+			
+		22.8. There is a way to restore your project after a crash. Google it. 
+			TL;DR 
+				DO NOT OPEN UNITY!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				Overwrite some file first
+	
+	
+		23.8. Select object on cursor position
+			Imagine that you're clicking on a box in the scene view and it won't get 
+			selected. That's because multiple objects may be overlapping it, such as 
+			the canvas, background, etc. 
+			
+			All you need to do is click multiple times. While clicking continuously, 
+			Unity will cycle through all gameobjects that are overlapping the mouse cursor.
+			
+		23.8. When changing a prefab but you only want to change, say, one value:
+			Change it and then right click > apply to prefab. 
+		
+		24.8. Formatting text in UI Text
+		
+			<b>Game design</b>
+			Daniel Kazankov 
+
+			<b>Programming</b>
+			Kevin Andok
+			Pavol Pánisz
+
+			<b>Graphic design</b>
+			Daniel Kazankov 
+			Kristina Benkova
+			Katarina Geffertova
+
+			<b>Special thanks to</b>
+			Peter Ondo Senpai
+
+			<size=20>Summer Game Dev 2020</size>
+		
+		
+		
+		
+		
+		
+		
+		
 		

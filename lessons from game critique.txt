@@ -52,4 +52,16 @@
 		Achievementy nedávaj do prototypu, to je posledné 
 		zaujímavé v hre. Je to len bonus.
 		
+	8.10 Game critique 2
+	
+		@Daniel: Nedávaj do prezentácie veci, ktorým nik 
+		nerozumie: "Časový limit tvorí shadow paralysis"
 		
+		Tie listy sú tmavé na tmavom pozadí kmeňu stroma.
+		Daj im preto lighting na celý vrch!
+		
+		Možnosť respawnu? Že jedna respawne druhú
+		
+		Spraviť assety na gravitačnú mechaniku tak, aby bolo 
+		jasné že duch "hýbe časopriestorom a teda mení 
+		gravitáciu".

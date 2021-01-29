@@ -91,6 +91,22 @@
 	they're typing right now.
 	Haven't played much with this feature but it's incredibly easy to 
 	jump into someone's coding session and do stuff.
+	
+	
+23.01.2021 Deleting an extension from Visual Studio (NOT VS CODE)
+
+	In this example, the guy was removing an extension called Codealike
+	from VS 2014:
+
+	1. Close Visual Studio (ensure devenv.exe is not present on the Task
+		Manager).
+	2. Go to: %USERPROFILE%\AppData\Local\Microsoft\VisualStudio\14.0\
+		Extensions
+	3. Visual Studio generates random directories, look for the 
+		directory that has Codealike.Client.dll ( you will spot it 
+		pretty fast :) )
+	4. Delete the whole folder.
+	5. Restart Visual Studio.
 
 
 

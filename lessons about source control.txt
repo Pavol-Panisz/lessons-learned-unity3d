@@ -1,0 +1,20 @@
+
+	17.01.21 set entire project to a specific commit:
+	
+		Get the SHA of the commit, to which you want to 
+		revert. This can be done in the Github desktop app
+		by right clicking on a commit and selecting 
+		Copy SHA. Then, open the repository in the 
+		command prompt (It's one of the options on top
+		of the app taskbar) and type:
+		
+		git reset f7823ab --hard
+		
+	    f7823ab is the SHA of the commit you want to reset 
+		to. From my experience, it can be much longer such as
+		
+		eb4b4c9c4b66f418eda713b9ad64a5929ea9584b
+		
+		the --hard instruction means, that no changes from 
+		what you've done to the code since the desired commit 
+		will be kept. You're completely travelling back in time.

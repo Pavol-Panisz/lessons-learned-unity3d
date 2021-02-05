@@ -275,6 +275,49 @@
 	afforementioned tools and make sure to install them. Photo
 	in the folder Images called 
 	"VS_Dont_Have_Attach_To_Unity_Fix.png"
+	
+30.1 What's screen space and camera.ScreenToWorldPoint(Vector3)
+	
+	When we say that some position is in screen space, we mean 
+	that it's recorded in pixel coordinates of the visible game
+	window. For example:
+	A screen space pos 0,0 is the lower left screen corner
+	and a screen space pos of 
+	(game window pixel width, game window pixel height) is 
+	the upper right corner of the screen.
+	
+	Important thing to understand:
+	
+		One of the methods which return a screen space position 
+		are Input.mousePosition. It follows the rules above. 
+		
+		NOTE: Although your game may have a reference resolution 
+		of, say, 1920 * 1080, when the mouse is in the upper right 
+		corner, the mousePosition may actually be something like 
+		960 x 540. This means that the entire game window doesn't 
+		cover the full size of your monitor, but rather, only 
+		a "half-size". So depending on how big the game window 
+		is, the results of this method will change.
+	
+	camera.ScreenToWorldPoint(Vector3) takes any screen space 
+	position and converts it to an accurate world space position.
+	Observe:
+	
+	var worldMousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+    transform.position = worldMousePos;
+	
+	This method will always position the given GameObject onto where 
+	our cursor is on the screen. It works anytime, even when the 
+	gameview pixel size changes, even when the camera moves or its 
+	size changes. It's magic.
+	
+5.2. What is REALLY a disabled behaviour?
+
+	When a behaviour is disabled, it doesn't receive any of the 
+	Unity state machine messages such as Update, Start, Etc..
+	
+	You can still call custom methods on it.
+	
 
 
 

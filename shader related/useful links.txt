@@ -1,0 +1,11 @@
+built-in variables, like time:
+https://docs.unity3d.com/Manual/SL-UnityShaderVariables.html
+
+functions you can use, such as sin, abs, step, saturate:
+https://developer.download.nvidia.com/cg/index_stdlib.html
+
+input struct / output info:
+https://docs.unity3d.com/Manual/SL-SurfaceShaders.html
+
+step by step shader example (soldier):
+https://docs.unity3d.com/Manual/SL-SurfaceShaderExamples.html

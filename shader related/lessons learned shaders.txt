@@ -1,0 +1,3 @@
+6.4 Incorrect values when sampling texture's edges
+	
+	You may run into this issue for example when making a toon shader. Just set the texture wrap mode to Clamp instead of Repeat

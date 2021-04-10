@@ -319,6 +319,31 @@
 	You can still call custom methods on it.
 	
 
+7.2 Note on rect.Contains
 
+	Don't forget that rect.Contains(Vector3) also has an override,
+	which also outputs correct results if the transforms is inversed,
+	e.g. the scale is negative:
+	rect.Contains(Vector3 point, bool allowInverse)
+	
+7.2 Note on text
+
+	If you want to, for example, have an enemy and a text field above 
+	their head, that displays their name, don't forget:
+	
+	All UI components must have as their parent the Canvas (or a 
+	gameobject that ultimately is parented to it).
+	
+	So if you want to achieve what was stated above, you can 
+	create the enem prefab with a tmpro text field in it, but don't 
+	forget to parent it to something in the canvas on start!
+	
+16.2 Jagged arrays 
+
+	When creating a jagged array, such as a 2d one, you create it 
+	like so:
+	
+	char[][] arr;
+	arr = new char[size.x][]; // leave the second argument(?) empty
 
 

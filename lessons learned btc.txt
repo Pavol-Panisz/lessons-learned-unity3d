@@ -1,0 +1,10 @@
+
+18.12.2021
+
+	problems(?) with btc (from Mental Outlaw's video "Why Monero is better than Bitcoin")
+
+	-90% of it is being hoarded by a small amount of people
+	-by hoarding it, you make it's value go up? inflation? idk how it works
+	-can only be mined with ASIC miners
+	-once the last bitcoin has been mined AND keeping in mind that mining is important to keeping bitcoin running, wouldn't that mean that there would be no more incentives to keep on mining?
+	-the ledger is public, so if they know your wallet number they can find out every transaction that you've ever done

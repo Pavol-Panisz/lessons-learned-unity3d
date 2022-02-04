@@ -18,3 +18,7 @@
 		the --hard instruction means, that no changes from 
 		what you've done to the code since the desired commit 
 		will be kept. You're completely travelling back in time.
+		
+	27.01.22
+	
+		

@@ -319,6 +319,20 @@
 		understanding the inner workings of reference / value
 		types and arrays
 		
+	13.4.2021 float.Parse throws exceptions
+		That may be because you're sending it something like
+		"14.457868". By default, it accepts "," as the comma
+		separator. Therefore, you must:
+		
+		include System.Globalization;
+		
+		create a NumberFormatInfo formatInfo;
+		
+		set the separator 
+			formatInfo.NumberDecimalSeparator = ".";
+			
+		pass it when parsing
+			float.Parse("14.457868", formatInfo);
 		
 		
 

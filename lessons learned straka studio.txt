@@ -1,0 +1,57 @@
+
+z talku Mira Straku, čo bol 22.4.2021 o jeho hre Loot River - nahrávkja toho je na SGDA youtube
+
+
+
+HLAVNÁ IDEA: UĽAHČI PUBLISHEROM A INVESTOROM PRÁCU A UNIKÁTNE ICH ZAUJMI 
+(gify, málo textu, postupný release informácií, len to najdolezitejsie povedz)
+
+
+
+REDDIT je extrémne dobrý kanál pre tvoj 18 - 25 target audience.
+Miro tam poslal gify jeho hry a boli na front page-i redditu.
+	akurát ti tam ludia budú aj veľa p*čovať že Čo tu robíš advertisements
+Z redditu je velmi dobrá wishlist konverzia aj engagement celkovo
+	odpisuj na komenty na reddite - engagement s komentami tomu pomaha sa dostat vyssie na front page
+
+najskor pozval PITCH WEBSTRÁNKU tym horsim investorom, nech vidi ze ako oni na to reaguju.
+az potom to poslal realne tym, s ktorymi chcel spolupracovat.
+
+Lebo bol prvotný kontakt cez pitch webstránku, vedel trackovat kto si to ako pozerá: videl IP adresy ze z 
+ktoreho mesta to bolo otvorené.
+
+Do toho PITCH WEBU nedal všetko (iba to najviacej eye-catching). Čiže nech im vie posielať ďalšie a ďalšie veci, aby nasicoval POSTUPNE ich hlad po tej hre. Taktiež ich tak oklamal, lebo vyzeral ako capable dev (aha, pridal nové veci tak rýchlo!)
+
+Devolveru to pozval na main email, lebo vedel ze tam im to nikto neposiela. Oni totiz dobrych hier vidia vela.
+
+Veľmi instantne im posielal veci. Ulahcoval im robotu. Neposlal GDD, no za 1 hodinu im spravil GDD video, co si instantne mohli zdielat.
+
+Na FPU POSIELAL TIEŽ VIDEO, kde vysvetluje tu hru. čiže im ulahcil pracu. VIDEO JE ZAUJIMAVEJSIE AKO 30 STRÁN TEXTU. Nemusia vôbec nič dešivrovať z kopy textu.
+
+Gwen Foster - má na twittery templates pre pitche roznym platformám
+https://twitter.com/ifnotnowgwen/status/1265907942269714433?lang=en
+
+Každý obrázok bol (tá pohyblivá časť v ňom) perfektne loopnutý gif - tým pádom zaujímavejšie. prezentácia bola google slides - lebo google slides aj ked je velke, stahuje sa ti to progresivne (pocas toho, ako uz mas prezentaciu spustenu)
+
+Vždy sa s ludmi zahralval - prvy slajd vidim enemaka na druhej platforme, druhy slajd ako si sa k nemu dostal? Treti slajd - aha - v tej hre sa da hybat platformami!!
+
+Keď je prezentácia mellow (v strede - vela faktov), dal tam opat nieco zaujimave a šokujúce
+
+Keď ideš robiť pitch na console, pozri sa, že čo sú momentálne buzzwords pre tú konzolu (Raytracing, 4K, 60FPS).. Snaž sa tieto buzzwordy mať v tvojej hre
+
+Dával do prezentácie len najdolezitejsie veci, no zároven tie, ktoré ukázu ze vies co robis.
+Cize pri kalkulacii budgetu neukazal kazdy detail kolko kazdy zamestnanec stoji. No zato ukazal ze 
+porting - 50k
+marketing - 100k
+atd..
+cize ukazal ten ballpark celku
+
+Ako posledný slajd pre XBOX dal enviroment herny, co vyzera ako XBOX logo
+Pre Sony PS Logo
+Typek zo Sony mu hovoril ze to bola jedna z najlepsich prezentacii co videl
+
+Publisherom vravel, že ako performujú podobné (nie najviac úspešné) hry. Čiže "aha", mozete so mnou zarobit tolkoto
+
+Ak nechceš riešiť bizdev, choď s publisherom.
+
+Je fajn keď investorom znizujes kolko od nich pytas, tym ze si uz ziskas cast penazi z FPU

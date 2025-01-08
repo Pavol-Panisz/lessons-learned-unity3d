@@ -1,0 +1,161 @@
+
+So you want to create a project that has most of the following?:
+
+	- can read/write files on you pc, run cli commands, etc?
+	- uses web technologies (vue3, tailwind) for the frontend dev?
+	- can be compiled to run somehow in the web but also on desktop?
+	- KNOWS where its location is so it can create its own internal folders? (on desktop, at least)
+	
+	Well then, I have a tutorial for that:
+	
+We'll be discussing how to make a vue3 electron project that will be able to run commands on your desktop via IPC (inter process communication), be compiled to run on desktop, etc.
+
+To be extra specific, the project will use the following:
+	- vue 3
+	- vue-cli-tools
+	- electron-builder
+	- yarn
+	- tailwindcss
+
+As you can see, we'll be using YARN instead of NPM as the package manager. SO DO NOT MIX THOSE TWO!!! Do NOT add npm packages, always add stuff only via yarn!
+	- The reason is simple: 
+
+The backbone of this project relies on this article:
+	https://medium.com/swlh/how-to-safely-set-up-an-electron-app-with-vue-and-webpack-556fb491b83
+	
+	Once you have that article read and implemented, you pretty much only need to add tailwind (explained below) and you're good to go.
+	
+	So, you can skip the following if you really don't care, and jump straight to how to add tailwind:
+	
+Now about the article's content and how i interpreted / extended it:
+	
+	In that article, it's explained how an electron vue app essentially has 2 processes:
+		- a renderer process 
+		- and a backend process. 
+	
+	The renderer process cannot access stuff such as node's file system (fs) or command execution (exec).
+	The process of setting up inter-process-communication between the renderer and backend process is the crux of the above linked article. It delves also into how to do it safely via only allowing safe 'channels' to be used for communication in a special preload.js file.
+	
+So once you have that article read and the stuff in it done (it doesn't take long), consider this:
+
+	You always want to have the frontend and backend separated.
+	
+	However, in the article, the front end and back end are sort of tightly coupled:
+	
+		App.vue from the article contains 
+			- window.ipc.send('READ_FILE', payload);
+			  and  
+			- window.ipc.on('READ_FILE', (payload) => {
+				 console.log(payload.content);
+			  });
+			  
+		What I did, in my app inspired by the article, was that i had a mediator file between the front end and backend. And then the communication/story went like this:
+		
+		
+		App.vue ------> 
+		                calls listFiles() of ---> 
+						                          useBackend.js() ------->
+                          												  does window.ipc.send('LIST_FILES', path) --------> 
+																		                                                     background.js
+	                                                                                                               <--------	
+		                                                         <--- replies with event.reply('LIST_FILES', files)
+                                                     <------ useBackend.js()														 
+	        <--- ..on('LIST_FILES'.. => emit('LIST_FILES_RESULT', ...}
+		App.vue .on('LIST_FILES_RESULT')
+		
+		
+		
+		App.vue: does { listFiles, backendEventEmitter } = useBackend()
+			
+		composables/useBackend.js : contains a single method called useBackend() that returns { listFiles, backendEventEmitter }
+		
+			- listFiles : encapsulates the logic that calls the actual backend, basically calls window.ipc.send('LIST_FILES', path)
+			
+			- backendEventEmitter : when you call any mediator method (so for example listFiles), the response gets sent via events.
+				
+				- in App.vue we have to register to listen to these events, for example in onMounted: 
+					backendEventEmitter.on('LIST_FILES_RESULT', (payload) => {
+						console.log('LIST_FILES_RESULT ', payload)
+					})
+		
+	Ok, so that closes the story of how App.vue calls useBackend()'s functions (listFiles) and listens to events (backendEventEmitter).
+	But with what backend is useBackend.js communicating with?
+	
+		Well, the article explained the magic of the preload.js function. It also explained what you do in electron's background.js
+		
+		And background.js is the thing communicating with useBackend.js
+		
+			So it's here that we do, for example
+				const path = require('path')
+				const { ipcMain } = require('electron')
+				const fs = require('fs')
+			
+			And here we also do
+				ipcMain.on('LIST_FILES', (event, payload) => {
+					fs.readdir(payload, (err, files) => {
+						if (err) { event.reply('LIST_FILES', { err }) }
+						else { event.reply('LIST_FILES', files ) } }  })
+						
+				// so it's all the way here that we notice that LIST_FILES was called, and then we send a response that is an event
+				
+			Inside of useBackend.js, we simply listen to the reply and basically re-emit it updwards into App.vue via the backendEventEmitter
+			
+			So, as you can see, useBackend.js is kinda just like a thing that sends stuff further down the pipeline from from App.vue down to the backend and vice versa
+			
+This mediator thingamajig made sense to me because it meant that if i wanted to change the implementation (NOT the interface) of the backend, i didnt have to
+do it in App.vue. Of course, if the interface changes, App.vue will have to reflect that, as useBackend.js is the interface
+
+Ok, what else is there to this project setup?
+
+	Pretty much thats it. Just use yarn, because I had massive pains when using both yarn and npm. And also i had pains cos 1 package (vue-slider-component) wasnt working correctly with vue3, so i had to downgrade to vue2. This, however, caused a ton of pains with other stuff. The fix was to create a fresh new project with vue3 and for the slider component, use vue-3-slider-component
+	
+		So don't mix vue2 and vue3!!! Cause even chatGPT will forget which version you're using and it'll give you worse code
+	
+	Oh, also:
+	
+How to add tailwind:
+
+	I couldn't find tailwind tutorials for yarn but luckily chatGPT cooked. I asked it:
+		'how can i add tailwind to my project when i use yarn'
+		
+		1. Run the following command in your project directory:  yarn add tailwindcss postcss autoprefixer
+			This installs Tailwind CSS, PostCSS (used to process Tailwind), and Autoprefixer (for cross-browser support).
+		2. Next, initialize Tailwind CSS to generate the configuration files: npx tailwindcss init
+			This will create a tailwind.config.js file in your project root.
+		3. If you don't already have a postcss.config.js file, create one in your project root and add the following content:
+			module.exports = {
+			  plugins: {
+				tailwindcss: {},
+				autoprefixer: {},
+			  },
+			}
+			
+			My custom note: you may be appending that to/inbetween existing stuff as opposed to overwriting entirely
+			
+		4. In your main CSS file (e.g., src/assets/styles.css or src/styles/tailwind.css), add the following lines to import Tailwind's default styles:
+			/* src/styles/tailwind.css */
+			@tailwind base;
+			@tailwind components;
+			@tailwind utilities;
+		
+		5.  Add the CSS file to your project: Make sure the CSS file you created is imported into your project. For example, in your main.js or App.js file, import the CSS:
+			import './styles/tailwind.css'
+		6. Optional: Purge unused CSS: If you want to remove unused CSS in production, you can enable the purge option in tailwind.config.js. This will make Tailwind purge unused styles for a smaller final CSS file:
+			// tailwind.config.js
+			module.exports = {
+			  purge: ['./src/**/*.{js,ts,jsx,tsx,html,vue}'],
+			  darkMode: false, // or 'media' or 'class'
+			  theme: {
+				extend: {},
+			  },
+			  variants: {
+				extend: {},
+			  },
+			  plugins: [],
+			}
+		
+			This ensures that only the Tailwind classes you're actually using in your project will be included in the final build.
+			
+			Custom note: I skipped this step initially and although tailwind didnt complain, all styles were completely white / transparent. So dont forget to add this
+			
+That's it. Enjoy.

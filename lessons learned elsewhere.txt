@@ -108,6 +108,11 @@
 	4. Delete the whole folder.
 	5. Restart Visual Studio.
 
+05.03.2022
 
+	How to delete a downloaded unity template (for example Lego Microgame):
+	
+	delete it from
+	C:\Users\Pavol\AppData\Roaming\UnityHub\Templates
 
 

@@ -1,0 +1,146 @@
+
+learned from:
+https://learngitbranching.js.org/
+
+important commands here: levels, sandbox
+
+IF I HAVE QUESTION, I MARK THAT THING WITH "(I ASSUME, ASK)"
+	so ctrl+f I ASSUME, ASK and go nuts
+
+----------------------
+
+branches in git are just pointers to a commit saying "i wanna include this commits work and also all of the previous' work"
+
+	or
+
+	a branch is a pointer to one specific commit, while a commit is a snapshot of your repository at a specific point in time.
+
+* = you're on this branch 
+
+example of branching and creating a commit on that branch:
+
+	git branch <name> // creates a new branch but doesnt move you onto it
+
+	// actually moves you onto that new branch. then you commit to that new branch your work
+	git checkout <name>; git commit
+	
+merging in git creates a special commit that has 2 unique parents. essentially, your're saying: 
+	"I wanna include the work of both of these branches and their parents (though not duplicitly)"
+	
+	
+rebase:
+	Imagine this: 
+
+			C0
+			|
+			C1
+		   /  \
+	bugFix*    C2 (main)
+
+	and you want bugFix to derive from C2 and not C1, you'd use rebase
+
+	git rebase main:
+
+			C0
+			|
+			C1
+			  \
+			  C2 (main)
+			  |
+			  bugFix*
+             
+head
+
+	"HEAD is the symbolic name for the currently checked out commit"
+	Normally HEAD points to a branch name
+	
+	basically, you use HEAD if you wanna move around in the tree
+	
+	you can use relative refs:
+	
+	git checkout HEAD^ will move you to the parent of where HEAD currently points
+	git checkout HEAD^^ will move you to the grandparent 
+		
+	instead of writing 
+		git checkout HEAD^^^^  
+	
+		you can also do
+		
+		git checkout HEAD~4
+		
+(forcibly) moving branches around
+
+	remember, a branch is just a pointer to a commit. 
+	with this in mind, you can move these pointers around. (you FORCE them to move)
+	
+	so
+	
+	you can move branches. seems a little unintuitive, right?
+	
+	well yeah, you can move 'em like this:
+		git branch -f main someCommitHash
+
+		this would FORCE main (which is a branch a.k.a a pointer) to
+		point at the commit with the hash someCommitHash
+		
+		usually it's enough to specify the 1st 4 characters of the hash
+		
+	DIFFERENCE BETWEEN MOVING HEAD AND A BRANCH
+	
+	you move HEAD with 
+		git checkout someCommitHash
+		
+	but you a branch with
+		git branch -f branchName someCommitHash
+		
+		
+resetting and reverting
+
+	you use reset on local branches and revert on remote ones.
+	
+	picture this:
+	
+             C0
+             |
+             C1 <- main
+            /  \
+pushed -> C3   C2 <- local*
+
+	git reset HEAD^ 
+	would still keep the last commit in the right branch, but 
+	would re-point local onto C1 like so:
+	
+             C0
+             |
+             C1 <- main, local*
+            /  \
+pushed -> C3   C2 (this'll be greyed out)
+	
+	
+	and what would revert do (REVERT IS USED WITH REMOTE BRANCHES)
+	
+	git checkout pushed (moves HEAD to pushed)
+	git revert HEAD 
+	
+             C0
+             |
+             C1 <- main, local*
+            /  \
+          C3   C2 (this'll be greyed out)
+		  |
+pushed -> C3'
+
+	revert created a new commit that (I ASSUME, ASK) doesnt contain 
+	the new changes introduced in C3
+
+	so, as I understand it currently, revert gives you the ability
+	to create a new commit born from the currently HEADED-at one.
+	And this new commit won't contain the things that were added in 
+	the commit we specified 
+	
+	so: (git revert HEAD) would create a new commit that excludes the 
+	currently new introduced changes
+	
+	
+	
+	

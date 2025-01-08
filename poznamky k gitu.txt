@@ -1,0 +1,4 @@
+ked si vytvaras atlassian ucet (bitbucket) aby si sa vedel prihlasit do sourcetree, kludne pouzi email.
+
+pri tvorbe gitlab uctu nechod cez free trial. na hornej liste stranky je PRICING. tam to sprav. (FREE tam bude nalavo v 3 columnoch)
+taktiez, ak si to od teba bude pytat FIRST NAME, LAST NAME, COMPAN INFO.. A TEL. Č., tak tam dole bude SKIP TRIAL. klikni na to, je to dost sneaky

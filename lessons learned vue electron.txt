@@ -158,4 +158,57 @@ How to add tailwind:
 			
 			Custom note: I skipped this step initially and although tailwind didnt complain, all styles were completely white / transparent. So dont forget to add this
 			
+Ok and how to run and build this?
+
+	To serve it during development, do 
+		yarn electron:serve
+		
+	To build it, do 
+		yarn electron:build
+		
+		I think chatGPT told me, to set vue.config.js like so. I asked it 'how to build the project as an executable for windows', or something similar:
+			
+			const { defineConfig } = require('@vue/cli-service')
+			module.exports = defineConfig({
+			  transpileDependencies: true,
+			  pluginOptions: {
+				electronBuilder: {
+				  builderOptions: {
+					appId: 'com.ituproj.app',
+					productName: 'KeyboardConfigItu',
+					win: {
+					  target: ['portable'], // You can also use 'portable' or 'zip'
+					  icon: 'path-to-your-icon.ico', // Optional
+					},
+				  },
+				},
+			  },
+			})
+
+		This'll put stuff into the dist and dist_electron folders, once the build is done.
+		
+		Inside of dist_electron, you'll have a lot of stuff, including an installer that creates a desktop shortcut, I think.
+		
+		The important stuff, though, is in the web_bundled forlder. Inside of it, you'll have the actual executable.
+		
+		Now here's the important part: If you were using the public folder of the project during development for storage of any changeable data (for example, my app had, inside of public, the folder config_files (which inside of it has user generated/updated/deleted files) and also a chmod57_keyboard_config_tool.exe executable (this executable was called via exec from background.js))
+		
+			The important observation is that once you build, there is no public folder inside of web_bundled. So, if your code relied on its existence, add it there. Its 'relative path' measured from the app's executable needs to be KINDA the same as the 'relative path 'measured from App.vue to public. Example:
+			
+				itu-proj
+				  |_ public 
+				     |_ ch57_keyboard_config.exe
+					 |_ config_files
+			      |_ src
+				     |_ App.vue
+					 
+			    ...
+				
+				win_unpacked
+				   |_ yourExecutableNamedIn_VueConfigJs.exe
+				   |_ public
+				      |_ ch57_keyboard_config
+                      |_ config_files					  
+
+			
 That's it. Enjoy.
